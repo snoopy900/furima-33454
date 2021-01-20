@@ -1,24 +1,55 @@
-# README
+## users テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column           | Type   | Options     |
+| ---------------- | ------ | ----------- |
+| nickname         | string | null: false |
+| email            | string | null: false |
+| password         | string | null: false |
+| last_name        | string | null: false |
+| first_name       | string | null: false |
+| katakana_surname | string | null: false |
+| katakana_name    | string | null: false |
+| date             | string | null: false |
 
-Things you may want to cover:
+- has_many :items
 
-* Ruby version
+## items テーブル
 
-* System dependencies
+| Column      | Type   | Options     |
+| ----------- | ------ | ----------- |
+| image       |        |             |
+| title       | string | null: false |
+| information | text | null: false   |
+| category    | string | null: false |
+| status      | text | null: false   |
+| fee         | string | null: false |
+| area        | string | null: false |
+| days        | string | null: false |
+| price       | string | null: false |
 
-* Configuration
+- belongs_to :user
 
-* Database creation
+## purchases テーブル
 
-* Database initialization
+| Column    | Type       | Options                        |
+| ----------| ---------- | ------------------------------ |
+| user_id   | references | null: false, foreign_key: true |
+| item_id   | references | null: false, foreign_key: true |
 
-* How to run the test suite
+- belongs_to :user
+- belongs_to :item
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## addresses テーブル
 
-* ...
+| Column       | Type       | Options                        |
+| ------------ | ---------- | ------------------------------ |
+| post         | string     | null: false |
+| ken          | string     | null: false |
+| city         | string     | null: false |
+| banti        | text       | null: false |
+| building     | string     | null: false |
+| phone_number | string     | null: false |
+| purchase_id  | references | null: false, foreign_key: true |
+
+- belongs_to : purchase
