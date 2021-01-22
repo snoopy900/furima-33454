@@ -3,7 +3,7 @@
 | Column           | Type   | Options     |
 | ---------------- | ------ | ----------- |
 | nickname         | string | null: false |
-| email            | string | unique: true | null:false |
+| email            | string | null:false, unique: true |
 | encrypted_password        | string | null: false |
 | last_name        | string | null: false |
 | first_name       | string | null: false |
@@ -26,6 +26,7 @@
 | prefecture_id        | integer | null: false |
 | days_id        | integer | null: false |
 | price       | integer | null: false |
+| user       | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - has_one  :purchase
@@ -49,7 +50,7 @@
 | post         | string     | null: false |
 | ken          | string     | null: false |
 | city         | string     | null: false |
-| area_id      | integer       | null: false |
+| prefecture_id      | integer       | null: false |
 | building     | string     |  |
 | phone_number | string     | null: false |
 | purchase  | references | null: false, foreign_key: true |
