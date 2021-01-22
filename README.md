@@ -19,7 +19,7 @@
 | ----------- | ------ | ----------- |
 | title       | string | null: false |
 | information | text   | null: false   |
-| category_id    | string | null: false |
+| category_id    | integer | null: false |
 | status_id      | integer   | null: false   |
 | fee_id         | integer | null: false |
 | area_id        | integer | null: false |
@@ -47,8 +47,8 @@
 | post         | string     | null: false |
 | ken          | string     | null: false |
 | city         | string     | null: false |
-| banti        | string       | null: false |
-| building     | integer     |  |
+| prefecture        | string       | null: false |
+| building     | string     |  |
 | phone_number | string     | null: false |
 | purchase  | references | null: false, foreign_key: true |
 
