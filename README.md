@@ -3,7 +3,7 @@
 | Column           | Type   | Options     |
 | ---------------- | ------ | ----------- |
 | nickname         | string | null: false |
-| email            | string | unique: true |
+| email            | string | unique: true | null:false |
 | encrypted_password        | string | null: false |
 | last_name        | string | null: false |
 | first_name       | string | null: false |
@@ -12,6 +12,7 @@
 | birthday         | date   | null: false |
 
 - has_many :items
+- has_many :purchases
 
 ## items テーブル
 
@@ -22,11 +23,12 @@
 | category_id    | integer | null: false |
 | status_id      | integer   | null: false   |
 | fee_id         | integer | null: false |
-| area_id        | integer | null: false |
+| prefecture_id        | integer | null: false |
 | days_id        | integer | null: false |
 | price       | integer | null: false |
 
 - belongs_to :user
+- has_one  :purchase
 
 ## purchases テーブル
 
@@ -47,7 +49,7 @@
 | post         | string     | null: false |
 | ken          | string     | null: false |
 | city         | string     | null: false |
-| prefecture        | string       | null: false |
+| area_id      | integer       | null: false |
 | building     | string     |  |
 | phone_number | string     | null: false |
 | purchase  | references | null: false, foreign_key: true |
