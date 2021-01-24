@@ -111,5 +111,11 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
 
+    it "emailが@がないと登録できない" do
+      @user.email = "test.yahoo.com"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
+    end
+
   end
 end
