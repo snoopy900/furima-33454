@@ -52,9 +52,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it "発送までの日数についての情報がないと商品の情報は保存できない" do
-        @item.day_id = 1
+        @item.day_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Day must be other than 1")
+        expect(@item.errors.full_messages).to include("Day can't be blank")
       end
       it "価格についての情報がないと商品の情報は保存できない" do
         @item.price = ""
@@ -80,6 +80,31 @@ RSpec.describe Item, type: :model do
         @item.price = 11000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
+      end
+      it "商品の状態についてのidに1が選択されている場合出品できない" do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
+      end
+      it "配送料の負担についてのidに1が選択されている場合出品できない" do
+        @item.fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Fee must be other than 1")
+      end
+      it "発送元の地域についてのidに1が選択されている場合出品できない" do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+      end
+      it "発送までの日数についてのidに1が選択されている場合出品できない" do
+        @item.day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Day must be other than 1")
+      end
+      it "カテゴリーついてのidに1が選択されている場合出品できない" do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
     end
   end
