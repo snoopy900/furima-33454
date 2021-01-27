@@ -6,24 +6,27 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :day
 
-  validates :title,         presence: true
-  validates :information,   presence: true
-  validates :image,         presence: true
-  validates :category_id,   presence: true
-  validates :status_id,     presence: true
-  validates :fee_id,        presence: true
-  validates :prefecture_id, presence: true
-  validates :day_id,        presence: true
-  validates :price,         presence: true
+  with_options presence: true do
+    validates :title
+    validates :information
+    validates :image
+    validates :category_id
+    validates :status_id
+    validates :fee_id
+    validates :prefecture_id
+    validates :day_id
+    validates :price
+  end
   validates_inclusion_of :price, in: 300..9_999_999
-  validates :price, format: { with: /\A[0-9]+\z/ }
 
-  validates :category_id,   numericality: { other_than: 1 } 
-  validates :status_id,     numericality: { other_than: 1 } 
-  validates :fee_id,        numericality: { other_than: 1 } 
-  validates :prefecture_id, numericality: { other_than: 1 } 
-  validates :day_id,        numericality: { other_than: 1 } 
-  validates :price,         numericality: true
+  with_options numericality: { other_than: 1 }  do
+   validates :category_id
+   validates :status_id
+   validates :fee_id
+   validates :prefecture_id
+   validates :day_id
+  end
+  validates :price,         numericality: { with: /\A[0-9]+\z/ }
 
   belongs_to :user
   has_one :purchase

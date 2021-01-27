@@ -32,7 +32,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Information can't be blank")
       end
       it "カテゴリーの情報がないと商品の情報は保存できない" do
-        @item.category_id = "1"
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
@@ -52,9 +52,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it "発送までの日数についての情報がないと商品の情報は保存できない" do
-        @item.day_id = ""
+        @item.day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Day can't be blank")
+        expect(@item.errors.full_messages).to include("Day must be other than 1")
       end
       it "価格についての情報がないと商品の情報は保存できない" do
         @item.price = ""
@@ -75,6 +75,11 @@ RSpec.describe Item, type: :model do
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("User must exist")
+      end
+      it "商品価格が10_000_000円以上では出品できない" do
+        @item.price = 11000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
     end
   end
