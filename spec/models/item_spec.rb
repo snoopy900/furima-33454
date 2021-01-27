@@ -32,9 +32,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Information can't be blank")
       end
       it "カテゴリーの情報がないと商品の情報は保存できない" do
-        @item.category_id = 1
+        @item.category_id = ""
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it "商品の状態についての情報がないと商品の情報は保存できない" do
         @item.status_id = ""
