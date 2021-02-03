@@ -1,23 +1,25 @@
 class PurchasesController < ApplicationController
+  before_action :set, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_index
   
   def index
     @user_purchase = UserPurchase.new
-    @item = Item.find(params[:item_id])
-
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @user_purchase = UserPurchase.new(purchase_params)
      if @user_purchase.valid?
        pay_item
        @user_purchase.save
-    redirect_to root_path(@item)
+    redirect_to root_path
     else
       render action: :index
     end
+  end
+
+  def set
+    @item = Item.find(params[:id])
   end
 
   def move_to_index
