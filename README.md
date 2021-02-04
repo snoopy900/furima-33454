@@ -55,4 +55,4 @@
 | phone_number | string     | null: false |
 | purchase  | references | null: false, foreign_key: true |
 
-- belongs_to : purchase
+- belongs_to : purchase 
